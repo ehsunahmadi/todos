@@ -1,25 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ChakraProvider, Container, theme } from "@chakra-ui/react";
+import { QueryClientProvider } from "react-query";
+import { TodoForm } from "./components/todoForm";
+import { TodoList } from "./components/todoList";
+import { VideoModal } from "./components/videoModal";
+import { CountProvider } from "./utils/countContext";
+import { queryClient } from "./utils/queryClient";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={theme}>
+        <CountProvider>
+          <Container pt={4}>
+            <VideoModal />
+            <TodoForm />
+            <TodoList />
+          </Container>
+        </CountProvider>
+      </ChakraProvider>
+    </QueryClientProvider>
   );
 }
 
