@@ -12,16 +12,18 @@ import { useEffect } from "react";
 import { useHighCountVideo } from "../hooks/useHighCountVideo";
 import { LoadingSpinner, Message } from "./lib";
 
+const videoStyle = { width: 500, maxWidth: "85%" };
+
 export const VideoModal = () => {
-  const { query } = useHighCountVideo();
+  const { query, fetchable } = useHighCountVideo();
   const { data: video, status, error } = query;
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
-    if (video) {
+    if (fetchable) {
       onOpen();
     }
-  }, [video, onOpen]);
+  }, [fetchable, onOpen]);
 
   switch (status) {
     case "success":
@@ -34,7 +36,7 @@ export const VideoModal = () => {
             <ModalBody>
               <Center>
                 <video
-                  style={{ width: 500, maxWidth: "85%" }}
+                  style={videoStyle}
                   src={video.preview_src}
                   controls
                   autoPlay
