@@ -6,7 +6,7 @@ interface TodoControlsProps extends UseEditableReturn {
   onDelete: () => void;
 }
 
-const TodoControls = ({
+export const TodoControls = ({
   isEditing,
   onSubmit,
   onCancel,
@@ -47,5 +47,3 @@ const TodoControls = ({
     </ButtonGroup>
   );
 };
-
-export default TodoControls;

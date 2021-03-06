@@ -1,6 +1,14 @@
-import * as localForage from "localforage";
+import localForage from "localforage";
 import { Todo } from "./apiProviders";
 import { v4 as uuidv4 } from "uuid";
+
+export const todosGET = async (id?: string): Promise<Todo[]> => {
+  const todos: Todo[] | null = await localForage.getItem("todos");
+  if (id) {
+    return todos?.filter((todo: Todo) => todo.id === id) ?? [];
+  }
+  return todos ?? [];
+};
 
 export const todosPOST = async (content: string): Promise<string | Error> => {
   const id = uuidv4();
@@ -37,12 +45,4 @@ export const todosUPDATE = async (id: string, data: { content: string }) => {
     return;
   }
   return oldTodos as Error;
-};
-
-export const todosGET = async (id?: string): Promise<Todo[]> => {
-  const todos: Todo[] | null = await localForage.getItem("todos");
-  if (id) {
-    return todos?.filter((todo: Todo) => todo.id === id) ?? [];
-  }
-  return todos ?? [];
 };

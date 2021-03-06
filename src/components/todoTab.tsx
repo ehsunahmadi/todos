@@ -12,7 +12,7 @@ import { useState } from "react";
 import { useTodo } from "../hooks/useTodo";
 import { deleteTodo, updateTodo } from "../utils/apiProviders";
 import { LoadingSpinner, Message } from "./lib";
-import TodoControls from "./todoControls";
+import { TodoControls } from "./todoControls";
 
 interface TodoTabProps {
   id: string;

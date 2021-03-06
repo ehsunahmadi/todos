@@ -6,7 +6,7 @@ import { VideoModal } from "./components/videoModal";
 import { CountProvider } from "./utils/countContext";
 import { queryClient } from "./utils/queryClient";
 
-function App() {
+export function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ChakraProvider theme={theme}>
@@ -21,5 +21,3 @@ function App() {
     </QueryClientProvider>
   );
 }
-
-export default App;

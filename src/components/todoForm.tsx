@@ -34,7 +34,7 @@ export const TodoForm = () => {
   return (
     <Box mb={2}>
       <form onSubmit={onSubmit}>
-        <FormControl isInvalid={false}>
+        <FormControl>
           <Flex justify="space-between" alignItems="center">
             <Box flex="1">
               <Input
@@ -45,7 +45,7 @@ export const TodoForm = () => {
                 placeholder="todo..."
               />
             </Box>
-            <Button ml={4} colorScheme="teal" isLoading={false} type="submit">
+            <Button ml={4} colorScheme="teal" type="submit">
               Add
             </Button>
           </Flex>
