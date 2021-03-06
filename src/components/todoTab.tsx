@@ -57,17 +57,13 @@ export const TodoTab = ({ id }: TodoTabProps) => {
             isPreviewFocusable={false}
             submitOnBlur={false}
           >
-            {(props) => (
+            {(props: UseEditableReturn) => (
               <Flex justify="space-between" alignItems="center">
                 <Box>
                   <EditablePreview />
                   <EditableInput />
                 </Box>
-                <TodoControls
-                  {...props}
-                  onDelete={onDelete}
-                  onUpdate={onUpdate}
-                />
+                <TodoControls {...props} onDelete={onDelete} />
               </Flex>
             )}
           </Editable>

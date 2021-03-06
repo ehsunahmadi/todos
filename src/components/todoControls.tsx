@@ -1,6 +1,10 @@
 import { CheckIcon, CloseIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
-import { ButtonGroup, IconButton } from "@chakra-ui/react";
+import { ButtonGroup, IconButton, UseEditableReturn } from "@chakra-ui/react";
 import React from "react";
+
+interface TodoControlsProps extends UseEditableReturn {
+  onDelete: () => void;
+}
 
 const TodoControls = ({
   isEditing,
@@ -8,7 +12,7 @@ const TodoControls = ({
   onCancel,
   onEdit,
   onDelete,
-}: any) => {
+}: TodoControlsProps) => {
   return (
     <ButtonGroup justifyContent="center" size="sm">
       {isEditing ? (
