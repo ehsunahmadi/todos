@@ -1,12 +1,17 @@
-import { Box, Button, Flex, FormControl, Input } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { useHighCountVideo } from "../hooks/useHighCountVideo";
+import {
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  Input,
+  useToast,
+} from "@chakra-ui/react";
+import { useState } from "react";
 import { createTodo } from "../utils/apiProviders";
 
 export const TodoForm = () => {
-  const { prefetch } = useHighCountVideo();
-
   const [content, setContent] = useState("");
+  const toast = useToast();
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -15,16 +20,16 @@ export const TodoForm = () => {
         await createTodo(content);
         setContent("");
       } catch (error) {
-        console.error(error.message);
+        toast({
+          title: "something went wrong & todo wasn't created.",
+          description: error.message,
+          status: "error",
+          duration: 6000,
+          isClosable: true,
+        });
       }
     }
   };
-
-  useEffect(() => {
-    if (content.length) {
-      prefetch();
-    }
-  }, [content.length, prefetch]);
 
   return (
     <Box mb={2}>

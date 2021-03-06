@@ -6,7 +6,6 @@ import {
   AlertTitle,
   Box,
   Center,
-  CloseButton,
   Spinner,
 } from "@chakra-ui/react";
 
@@ -23,8 +22,7 @@ export const Message = ({ title, description, status }: MessageProps) => {
         <AlertIcon />
         <AlertTitle mr={2}>{title}</AlertTitle>
         {!!description && <AlertDescription>{description}</AlertDescription>}
-        <CloseButton position="absolute" right="8px" top="8px" />
-      </Alert>{" "}
+      </Alert>
     </Box>
   );
 };
@@ -36,7 +34,7 @@ export const LoadingSpinner = () => {
         thickness="4px"
         speed="0.65s"
         emptyColor="gray.200"
-        color="blue.500"
+        color="teal.400"
         size="xl"
       />
     </Center>

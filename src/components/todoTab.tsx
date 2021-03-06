@@ -5,6 +5,8 @@ import {
   EditablePreview,
   Flex,
   ListItem,
+  UseEditableReturn,
+  useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useTodo } from "../hooks/useTodo";
@@ -19,12 +21,19 @@ interface TodoTabProps {
 export const TodoTab = ({ id }: TodoTabProps) => {
   const { data: todo, status, error } = useTodo(id);
   const [content, setContent] = useState(todo?.content);
+  const toast = useToast();
 
   const onDelete = async () => {
     try {
       await deleteTodo(id);
     } catch (error) {
-      console.error(error);
+      toast({
+        title: "something went wrong & todo wasn't deleted.",
+        description: error.message,
+        status: "error",
+        duration: 6000,
+        isClosable: true,
+      });
     }
   };
 
@@ -33,7 +42,13 @@ export const TodoTab = ({ id }: TodoTabProps) => {
       try {
         await updateTodo(id, { content });
       } catch (error) {
-        console.error(error);
+        toast({
+          title: "something went wrong & todo wasn't updated.",
+          description: error.message,
+          status: "error",
+          duration: 6000,
+          isClosable: true,
+        });
       }
     }
   };
